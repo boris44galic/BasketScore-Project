@@ -3,13 +3,15 @@
     <h1 class="mb-6 text-2xl font-extrabold text-[#f1f5f9]">Admin Panel</h1>
 
     <!-- Tab navigation -->
-    <div class="mb-8 flex flex-wrap gap-1 rounded-xl bg-[#1e293b] p-1 w-fit">
-      <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key"
-        class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition cursor-pointer"
-        :class="activeTab === tab.key ? 'bg-[#0f172a] text-[#f1f5f9] shadow' : 'text-white hover:text-[#94a3b8]'">
-        <component :is="tab.icon" class="h-4 w-4" />
-        {{ tab.label }}
-      </button>
+    <div class="mb-8 overflow-x-auto">
+      <div class="flex gap-1 rounded-xl bg-[#1e293b] p-1 w-fit whitespace-nowrap">
+        <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key"
+          class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition cursor-pointer"
+          :class="activeTab === tab.key ? 'bg-[#0f172a] text-[#f1f5f9] shadow' : 'text-white hover:text-[#94a3b8]'">
+          <component :is="tab.icon" class="h-4 w-4" />
+          {{ tab.label }}
+        </button>
+      </div>
     </div>
 
     <!-- Feedback -->

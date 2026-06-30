@@ -23,62 +23,62 @@
           </span>
         </div>
 
-        <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center justify-between gap-2">
           <!-- Home -->
-          <div class="flex flex-1 flex-col items-center gap-2">
-            <div class="flex items-center gap-30 pr-37" >
+          <div class="flex flex-1 flex-col items-center gap-2 min-w-0">
+            <div class="flex items-center gap-1.5 lg:gap-30 lg:pr-37">
               <button @click="isLoggedIn ? toggle(match.homeTeamId) : (showLogin = true)"
-                class="cursor-pointer rounded-full p-1.5 transition hover:bg-[#1e293b]"
+                class="cursor-pointer rounded-full p-1 lg:p-1.5 transition hover:bg-[#1e293b] shrink-0"
                 :class="isFavourite(match.homeTeamId) ? 'text-red-500' : 'text-[#475569] hover:text-red-400'">
-                <Heart class="h-6 w-6" :class="isFavourite(match.homeTeamId) ? 'fill-red-500' : ''" />
+                <Heart class="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" :class="isFavourite(match.homeTeamId) ? 'fill-red-500' : ''" />
               </button>
               <RouterLink :to="`/team/${match.homeTeamId}`"
-                class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#1e293b] transition hover:ring-2 hover:ring-[#00d4aa]">
+                class="flex h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#1e293b] transition hover:ring-2 hover:ring-[#00d4aa]">
                 <img v-if="match.homeTeamLogo" :src="match.homeTeamLogo" :alt="match.homeTeam"
-                  class="h-12 w-12 object-contain" @error="(e) => e.target.style.display='none'" />
-                <span v-else class="text-2xl">🏀</span>
+                  class="h-8 w-8 sm:h-9 sm:w-9 lg:h-12 lg:w-12 object-contain" @error="(e) => e.target.style.display='none'" />
+                <span v-else class="text-lg sm:text-xl lg:text-2xl">🏀</span>
               </RouterLink>
             </div>
-            <span class="text-center text-sm font-bold text-[#f1f5f9]">{{ match.homeTeam }}</span>
+            <span class="w-full text-center text-[10px] sm:text-xs lg:text-sm font-bold text-[#f1f5f9] leading-tight px-1">{{ match.homeTeam }}</span>
           </div>
 
           <!-- Score -->
           <div class="flex shrink-0 flex-col items-center">
-            <div class="flex items-center gap-4">
-              <span class="text-5xl font-black tabular-nums" :class="scoreTextClass">
+            <div class="flex items-center gap-1.5 sm:gap-3 lg:gap-4">
+              <span class="text-2xl sm:text-3xl lg:text-5xl font-black tabular-nums" :class="scoreTextClass">
                 {{ match.homeScore ?? '-' }}
               </span>
-              <span class="text-2xl font-black text-white">:</span>
-              <span class="text-5xl font-black tabular-nums" :class="scoreTextClass">
+              <span class="text-lg lg:text-2xl font-black text-white">:</span>
+              <span class="text-2xl sm:text-3xl lg:text-5xl font-black tabular-nums" :class="scoreTextClass">
                 {{ match.awayScore ?? '-' }}
               </span>
             </div>
-            <div class="mt-4 flex items-center gap-2 rounded-full px-4 py-1.5" :class="statusBadgeClass">
+            <div class="mt-3 lg:mt-4 flex items-center gap-2 rounded-full px-3 lg:px-4 py-1 lg:py-1.5" :class="statusBadgeClass">
               <span v-if="match.status === 'live'" class="h-2 w-2 animate-pulse rounded-full bg-[#ef4444]" />
-              <span class="text-sm font-bold text-white">{{ statusLabel }}</span>
+              <span class="text-xs lg:text-sm font-bold text-white">{{ statusLabel }}</span>
             </div>
-            <p v-if="match.hall" class="mt-2 flex items-center gap-1.5 pt-3 text-s font-medium text-[#94a3b8]">
-              <MapPin class="h-3.5 w-3.5 shrink-0" />
-              {{ match.hall }}
-            </p>          
+            <p v-if="match.hall" class="mt-2 flex items-center gap-1 lg:gap-1.5 pt-2 lg:pt-3 text-[10px] lg:text-sm font-medium text-[#94a3b8] max-w-30 lg:max-w-none text-center">
+              <MapPin class="h-3 lg:h-3.5 w-3 lg:w-3.5 shrink-0" />
+              <span class="truncate lg:whitespace-normal">{{ match.hall }}</span>
+            </p>
           </div>
 
           <!-- Away -->
-          <div class="flex flex-1 flex-col items-center gap-2">
-            <div class="flex items-center gap-30 pl-37">
+          <div class="flex flex-1 flex-col items-center gap-2 min-w-0">
+            <div class="flex items-center gap-1.5 lg:gap-30 lg:pl-37">
               <RouterLink :to="`/team/${match.awayTeamId}`"
-                class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#1e293b] transition hover:ring-2 hover:ring-[#00d4aa]">
+                class="flex h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#1e293b] transition hover:ring-2 hover:ring-[#00d4aa]">
                 <img v-if="match.awayTeamLogo" :src="match.awayTeamLogo" :alt="match.awayTeam"
-                  class="h-12 w-12 object-contain" @error="(e) => e.target.style.display='none'" />
-                <span v-else class="text-2xl">🏀</span>
+                  class="h-8 w-8 sm:h-9 sm:w-9 lg:h-12 lg:w-12 object-contain" @error="(e) => e.target.style.display='none'" />
+                <span v-else class="text-lg sm:text-xl lg:text-2xl">🏀</span>
               </RouterLink>
               <button @click="isLoggedIn ? toggle(match.awayTeamId) : (showLogin = true)"
-                class="cursor-pointer rounded-full p-1.5 transition hover:bg-[#1e293b]"
+                class="cursor-pointer rounded-full p-1 lg:p-1.5 transition hover:bg-[#1e293b] shrink-0"
                 :class="isFavourite(match.awayTeamId) ? 'text-red-500' : 'text-[#475569] hover:text-red-400'">
-                <Heart class="h-6 w-6" :class="isFavourite(match.awayTeamId) ? 'fill-red-500' : ''" />
+                <Heart class="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" :class="isFavourite(match.awayTeamId) ? 'fill-red-500' : ''" />
               </button>
             </div>
-            <span class="text-center text-sm font-bold text-[#f1f5f9]">{{ match.awayTeam }}</span>
+            <span class="w-full text-center text-[10px] sm:text-xs lg:text-sm font-bold text-[#f1f5f9] leading-tight px-1">{{ match.awayTeam }}</span>
           </div>
         </div>
       </div>

@@ -63,20 +63,20 @@
         </div>
 
         <div v-else class="overflow-x-auto">
-          <table class="w-full text-[14px]">
+          <table class="w-full min-w-160 text-[14px]">
             <thead>
               <tr class="border-b border-[#1e293b] text-left">
-                <th class="px-5 py-3 font-semibold text-white">Date</th>
+                <th class="px-4 py-3 font-semibold text-white">Date</th>
                 <th class="px-4 py-3 font-semibold text-white">Opponent</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">Result</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">MIN</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">PTS</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">REB</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">AST</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">STL</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">BLK</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">PF</th>
-                <th class="px-4 py-3 text-center font-semibold text-white">TO</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">Result</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">MIN</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">PTS</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">REB</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">AST</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">STL</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">BLK</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">PF</th>
+                <th class="px-3 py-3 text-center font-semibold text-white">TO</th>
               </tr>
             </thead>
             <tbody>

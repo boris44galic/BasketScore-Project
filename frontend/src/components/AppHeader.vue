@@ -110,9 +110,9 @@
 
         <!-- Favourites -->
         <button @click="goToFavourites"
-          class="group flex cursor-pointer items-center gap-2 rounded-full border border-[#1e293b] px-4 py-2 text-[14px] font-semibold text-[#f1f5f9] transition hover:border-[#334155] hover:bg-[#1e293b] sm:px-5 sm:py-2.5 sm:text-[15px]">
+          class="group flex cursor-pointer items-center gap-2 rounded-full border border-[#1e293b] px-3 py-2 text-[14px] font-semibold text-[#f1f5f9] transition hover:border-[#334155] hover:bg-[#1e293b] sm:px-5 sm:py-2.5 sm:text-[15px]">
           <Heart class="h-4 w-4 text-[#f1f5f9] transition-colors group-hover:fill-red-500 group-hover:text-red-500" />
-          Favourites
+          <span class="hidden sm:inline">Favourites</span>
         </button>
 
         <!-- User dropdown / Sign in -->
@@ -224,7 +224,8 @@ function goToFavourites() {
   }
 }
 
-// ── Auth  
+// ── Auth
+const { isLoggedIn, logoutUser, user, isAdmin } = useAuth()
 const showLogin = ref(false)
 const dropdownOpen = ref(false)
 const dropdownRef = ref(null)

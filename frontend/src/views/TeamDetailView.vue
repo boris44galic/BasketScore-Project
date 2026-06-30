@@ -22,7 +22,14 @@
             <span v-else class="text-5xl">🏀</span>
           </div>
           <div class="text-center sm:text-left">
-            <h1 class="text-3xl font-extrabold text-white">{{ team.name }}</h1>
+            <div class="flex items-center justify-center gap-3 sm:justify-start">
+              <h1 class="text-3xl font-extrabold text-white">{{ team.name }}</h1>
+              <button @click="isLoggedIn ? toggle(Number(teamId)) : (showLogin = true)"
+                class="cursor-pointer rounded-full p-1.5 transition hover:bg-[#1e293b] pl-4"
+                :class="isFavourite(Number(teamId)) ? 'text-red-500' : 'text-[#475569] hover:text-red-400'">
+                <Heart class="h-6 w-6" :class="isFavourite(Number(teamId)) ? 'fill-red-500' : ''" />
+              </button>
+            </div>
             <p class="mt-1 text-[15px] text-[#94a3b8]">
               {{ team.city?.name }}{{ team.city?.country?.name ? ', ' + team.city.country.name : '' }}
             </p>
@@ -47,11 +54,11 @@
       <div v-if="activeTab === 'Matches'" class="rounded-xl border border-[#1e293b] bg-[#111827]">
         <div v-if="!teamMatches.length" class="py-12 text-center text-[#64748b]">No matches found.</div>
         <div v-else class="overflow-x-auto">
-          <table class="w-full text-[14px]">
+          <table class="w-full min-w-120 text-[14px]">
             <thead>
               <tr class="border-b border-[#1e293b] text-left">
-                <th class="px-5 py-3 pl-10 font-semibold text-white">Date</th>
-                <th class="px-5 py-3 pl-10 font-semibold text-white">Opponent</th>
+                <th class="px-4 py-3 font-semibold text-white">Date</th>
+                <th class="px-4 py-3 font-semibold text-white">Opponent</th>
                 <th class="px-4 py-3 text-center font-semibold text-white">Result</th>
                 <th class="px-4 py-3 text-center font-semibold text-white">Score</th>
                 <th class="px-4 py-3 text-center font-semibold text-white">Status</th>
@@ -175,18 +182,27 @@
       <p class="text-lg font-semibold text-[#94a3b8]">Team not found</p>
     </div>
   </div>
+
+  <LoginModal v-model="showLogin" />
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ChevronLeft, MapPin } from 'lucide-vue-next'
+import { ChevronLeft, MapPin, Heart } from 'lucide-vue-next'
 import api, { fetchAll } from '@/api'
 import { useScoresStore } from '@/stores/scores'
+import { useAuth } from '@/composables/useAuth'
+import { useFavourites } from '@/composables/useFavourites'
+import LoginModal from '@/components/LoginModal.vue'
 
 const route = useRoute()
 const router = useRouter()
 const store = useScoresStore()
+
+const { isLoggedIn } = useAuth()
+const { isFavourite, toggle, loadFavourites } = useFavourites()
+const showLogin = ref(false)
 
 const teamId = route.params.id
 const team = ref(null)
@@ -221,7 +237,7 @@ const teamMatches = computed(() => {
         matchDate: m.matchDate,
         opponent: isHome ? m.awayTeam : m.homeTeam,
         opponentLogo: isHome ? m.awayTeamLogo : m.homeTeamLogo,
-        homeAway: isHome ? 'H' : 'A',
+        homeAway: isHome ? 'Home' : 'Away',
         score: myScore != null && oppScore != null ? `${myScore} – ${oppScore}` : '—',
         result,
         status: m.status,
@@ -289,6 +305,6 @@ onMounted(async () => {
   }
 
   if (!store.matches.length) await store.fetchMatches()
-  await Promise.all([loadPlayers(), loadStandings()])
+  await Promise.all([loadPlayers(), loadStandings(), loadFavourites()])
 })
 </script>

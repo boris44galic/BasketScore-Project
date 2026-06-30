@@ -45,7 +45,7 @@
 
       <!-- Right sidebar -->
       <aside class="hidden w-68 shrink-0 lg:block pt-7">
-        <div class="sticky top-24">
+        <div class="sticky top-24 flex flex-col gap-4">
 
           <!-- Today's highlights -->
           <div class="overflow-hidden rounded-xl border border-[#1e293b] bg-[#111827]">
@@ -59,6 +59,23 @@
               <div class="min-w-0 flex-1">
                 <p class="truncate text-xs font-semibold text-[#f1f5f9]">{{ h.title }}</p>
                 <p class="text-xs text-[#64748b]">{{ h.subtitle }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transfer News -->
+          <div class="overflow-hidden rounded-xl border border-[#1e293b] bg-[#111827]">
+            <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-3">
+              <span class="h-2 w-2 rounded-full bg-[#00d4aa]" />
+              <span class="text-sm font-bold text-[#f1f5f9]">Transfer News</span>
+            </div>
+            <div
+              v-for="(t, i) in transfers" :key="i"
+              class="flex cursor-pointer items-start gap-3 border-t border-[#1e293b]/60 px-4 py-3 transition hover:bg-[#1e293b]/40">
+              <span class="mt-0.5 text-lg shrink-0">{{ t.icon }}</span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-[#f1f5f9] leading-snug">{{ t.title }}</p>
+                <p class="mt-0.5 text-[11px] text-[#64748b]">{{ t.league }} · {{ t.date }}</p>
               </div>
             </div>
           </div>
@@ -104,6 +121,14 @@ const highlights = [
   { icon: '💥', title: "Jokić wins MVP again",             subtitle: 'Third consecutive MVP award' },
   { icon: '🏆', title: "Celtics dominate East",            subtitle: 'Boston 55-15 · Best record in NBA' },
   { icon: '🌍', title: "Real Madrid clinch EuroLeague top", subtitle: 'R. Madrid 78 – 75 CSKA · Q4 final' },
+]
+
+const transfers = [
+  { icon: '🔄', title: "Kyrie Irving extends deal with Dallas Mavericks for 3 more years", league: 'NBA', date: 'Today' },
+  { icon: '✍️', title: "Nikola Mirotic signs 2-year extension with Olympiacos", league: 'EuroLeague', date: 'Yesterday' },
+  { icon: '🚀', title: "Victor Wembanyama re-signs with San Antonio on max contract", league: 'NBA', date: '2 days ago' },
+  { icon: '💰', title: "Vasilije Micić joins Oklahoma City Thunder on 4-year deal", league: 'NBA', date: '3 days ago' },
+  { icon: '🌟', title: "Sergio Llull renews contract with Real Madrid until 2027", league: 'EuroLeague', date: '4 days ago' },
 ]
 </script>
 

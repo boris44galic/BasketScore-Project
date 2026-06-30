@@ -3,16 +3,16 @@
 
     <Transition name="title-fade" mode="out-in">
       <h1 :key="activeTab"
-        class="mb-6 text-center text-[38px] font-extrabold leading-none sm:mb-8 sm:text-[52px]"
+        class="mb-6 text-center text-[28px] font-extrabold leading-none sm:mb-8 sm:text-[38px] md:text-[52px]"
         :class="activeTab === 'Live' ? 'text-[#ef4444]' : 'text-[#f1f5f9]'">
         {{ titleByTab }}
       </h1>
     </Transition>
 
     <!-- Filter tabs -->
-    <div class="scrollbar-hide mb-6 flex w-full max-w-[600px] items-center justify-center gap-2 overflow-x-auto pb-1">
+    <div class="mb-6 flex w-full max-w-150 flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-center">
       <button v-for="tab in searchTabs" :key="tab.label" @click="selectTab(tab)"
-        class="flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-[14px] font-semibold transition md:text-[15px] cursor-pointer"
+        class="flex items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-[14px] font-semibold transition md:text-[15px] cursor-pointer"
         :class="activeTab === tab.label
           ? 'border-[#00d4aa] bg-[#00d4aa]/10 text-[#00d4aa]'
           : 'border-[#1e293b] bg-[#1e293b] text-white hover:border-[#334155] hover:text-[#94a3b8]'">

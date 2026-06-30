@@ -3,7 +3,7 @@
     <h1 class="mb-6 text-xl font-extrabold text-[#f1f5f9]">Standings</h1>
 
     <!-- Controls row -->
-    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+    <div class="mb-6 flex flex-col gap-4">
       <!-- League selector -->
       <div class="flex flex-wrap gap-2">
         <button
@@ -63,7 +63,6 @@ import StandingsTable from '@/components/StandingsTable.vue'
 import { fetchAll } from '@/api'
 import api from '@/api'
 
-const LEAGUE_FLAGS = { 'NBA': '🇺🇸', 'Euroleague': '🇪🇺' }
 
 const store = useScoresStore()
 const route = useRoute()
@@ -128,6 +127,7 @@ const rows = computed(() =>
     })
     .map((s, i) => ({
       pos: i + 1,
+      id: s.team.id,
       name: s.team.name,
       logo: s.team.logo,
       p: s.win + s.loss,
